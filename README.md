@@ -1,26 +1,70 @@
 # Creator Brand Growth Studio
 
-I want website for website clients in which there is one hero image in background like this and that header plus and one more header Utilize your fame to grow your bussines thorugh website other there should be container below consists website pro's 1. let you sale your brand product directly, 2. help in grow and scale your bussines and at the same time loyal lfame 3, provide separation in your daily  content nd bussiness content, 4. your brand feel professional and authentic cons, negtiable mainatanencae cost compare to future growth and scalability 2. require little time to manage but we will help guide you 3. feel like distraction but youw will be thankful in future in this conected didital world and one forum below fill it to get our demo work in your email input in form name content categories which have select optioini entertainment , lifestyle, fashion and inclue more which is in your mind 2. email 3. website for --> bussiness, personal brand
+A website for creators and personal brands to turn their audience into customers through a professional online presence.
 
-This project was built with [Lovable](https://lovable.dev).
+## Project overview
 
-**Live app**: https://creator-brand-growth-studio.lovable.app
+The homepage introduces the service, explains the benefits of having a dedicated creator website, and provides a form for requesting a free demo.
 
-## Build with Lovable
+The demo request form currently uses Supabase.
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/dba2a60a-8abc-4bcd-bbf4-c3e4ac53778b).
+## Tech stack
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+- React 19
+- TanStack Start and TanStack Router
+- TypeScript
+- Vite
+- Tailwind CSS v4
+- Supabase
+- Drizzle ORM
 
-## Development
+## Getting started
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+### Requirements
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+- [Bun](https://bun.sh/)
+
+### Install dependencies
+
+```bash
+bun install
 ```
+
+### Configure environment variables
+
+Create a local `.env` file using `.env.example` as a reference. Add the required Supabase project URL and publishable key.
+
+Never commit `.env` or server-only credentials.
+
+### Run locally
+
+```bash
+bun run dev
+```
+
+### Production build
+
+```bash
+bun run build
+```
+
+## Available scripts
+
+| Command | Description |
+| --- | --- |
+| `bun run dev` | Start the development server |
+| `bun run build` | Build the production application |
+| `bun run preview` | Preview the production build |
+| `bun run lint` | Run ESLint |
+| `bun run format` | Format project files with Prettier |
+| `bun run test` | Run the test suite |
+
+## Repository structure
+
+- `src/routes/` — application routes
+- `src/components/` — reusable UI components
+- `src/integrations/` — external service integrations
+- `src/lib/` — shared utilities and application helpers
+- `src/styles.css` — global styles and design tokens
+- `public/` — static public assets
+- `drizzle/` — database schema and migrations
