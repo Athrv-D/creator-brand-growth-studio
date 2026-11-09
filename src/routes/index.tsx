@@ -57,15 +57,21 @@ function Index() {
 
   return (
     <main className="bg-background text-foreground">
-      <section className="relative min-h-screen overflow-hidden">
-        <img src={hero.url} alt="Atharv Gupta" className="absolute inset-0 h-full w-full object-cover object-right" />
-        <div className="relative flex min-h-screen items-end px-6 pb-16 md:px-16">
-          <div className="max-w-2xl animate-fade-up">
-            <h2 className="text-2xl font-light leading-snug md:text-4xl">
+      <section className="relative overflow-hidden">
+        <div className="relative mx-auto aspect-[16/9] w-full max-w-[1920px]">
+          <img src={hero.url} alt="Atharv Gupta — Transform your brand into a thriving business" className="absolute inset-0 h-full w-full object-cover" />
+          <div className="absolute left-[4%] top-[46%] hidden max-w-[52%] animate-fade-up md:block">
+            <h2 className="text-2xl font-light leading-snug lg:text-4xl">
               Utilize your <span className="text-primary">fame</span> to grow your business through a website.
             </h2>
             <a href="#demo" className="btn-primary mt-8 inline-block">Get a free demo</a>
           </div>
+        </div>
+        <div className="px-6 pb-12 md:hidden">
+          <h2 className="text-2xl font-light leading-snug">
+            Utilize your <span className="text-primary">fame</span> to grow your business through a website.
+          </h2>
+          <a href="#demo" className="btn-primary mt-6 inline-block">Get a free demo</a>
         </div>
       </section>
 
