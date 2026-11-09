@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { Check, X } from "lucide-react";
-import hero from "@/assets/hero-portrait.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
@@ -57,23 +56,22 @@ function Index() {
 
   return (
     <main className="bg-background text-foreground">
-      <section className="relative flex min-h-svh items-center overflow-hidden">
-        <img src={hero.url} alt="Atharv Gupta — Transform your brand into a thriving business" className="absolute inset-0 h-full w-full object-cover" />
+      <section className="relative overflow-hidden">
         <div className="hero-overlay absolute inset-0" />
-        <div className="relative mx-auto w-full max-w-6xl px-6 py-28">
-          <div className="max-w-2xl animate-fade-up">
+        <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-6 py-16 md:min-h-svh md:grid-cols-[1.1fr_0.9fr] md:py-24 lg:gap-16">
+          <div className="animate-fade-up text-center md:text-left">
             <span className="badge">Websites for creators & brands</span>
-            <h1 className="mt-6 text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl lg:text-7xl">
+            <h1 className="mt-6 text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
               Utilize your <span className="text-primary">fame</span> to grow your business through a website.
             </h1>
-            <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
+            <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground md:mx-0 md:text-lg">
               Turn your audience into customers. We build fast, professional websites that sell your brand products, scale with you, and keep your fans loyal.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4 md:justify-start">
               <a href="#demo" className="btn-primary">Get a free demo</a>
               <a href="#why" className="btn-ghost">See why it works</a>
             </div>
-            <div className="mt-14 flex flex-wrap gap-10">
+            <div className="mt-14 flex flex-wrap justify-center gap-8 md:justify-start md:gap-10">
               {[["4", "Growth benefits"], ["3", "Concerns answered"], ["24h", "Demo turnaround"]].map(([n, l]) => (
                 <div key={l}>
                   <p className="text-2xl font-semibold text-primary md:text-3xl">{n}</p>
@@ -81,6 +79,14 @@ function Index() {
                 </div>
               ))}
             </div>
+          </div>
+          <div className="relative mx-auto w-full max-w-sm md:max-w-none">
+            <div className="absolute -inset-4 rounded-[2rem] bg-primary/10 blur-2xl" aria-hidden="true" />
+            <img
+              src="/hero-person.png"
+              alt="Atharv Gupta"
+              className="relative aspect-[4/5] w-full rounded-3xl border border-border object-cover shadow-2xl"
+            />
           </div>
         </div>
       </section>
