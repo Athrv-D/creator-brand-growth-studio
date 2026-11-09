@@ -162,6 +162,7 @@
 @utility btn-ghost { border: 1px solid var(--input); color: var(--foreground); border-radius: 9999px; padding: 0.85rem 1.75rem; font-weight: 500; backdrop-filter: blur(6px); transition: all .2s; &:hover { border-color: var(--primary); color: var(--primary); } }
 @utility badge { display: inline-block; border: 1px solid color-mix(in oklab, var(--primary) 40%, transparent); background: color-mix(in oklab, var(--primary) 12%, transparent); color: var(--primary); border-radius: 9999px; padding: 0.4rem 1rem; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; }
 @utility hero-overlay { background: linear-gradient(105deg, var(--background) 30%, color-mix(in oklab, var(--background) 75%, transparent) 60%, color-mix(in oklab, var(--background) 25%, transparent)); }
+@utility hero-image { -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 68%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 68%, transparent 100%); }
 @utility field-label { font-size: 0.85rem; color: var(--muted-foreground); }
 @utility field { margin-top: .5rem; width: 100%; background: var(--background); border: 1px solid var(--input); border-radius: var(--radius); padding: .75rem 1rem; color: var(--foreground); outline: none; &:focus { border-color: var(--ring); } }
 @utility choice { border: 1px solid var(--input); border-radius: var(--radius); padding: .75rem; color: var(--muted-foreground); transition: all .2s; }
