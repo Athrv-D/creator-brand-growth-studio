@@ -57,25 +57,35 @@ function Index() {
 
   return (
     <main className="bg-background text-foreground">
-      <section className="relative overflow-hidden">
-        <div className="relative mx-auto aspect-[16/9] w-full max-w-[1920px]">
-          <img src={hero.url} alt="Atharv Gupta — Transform your brand into a thriving business" className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute left-[4%] top-[46%] hidden max-w-[52%] animate-fade-up md:block">
-            <h2 className="text-2xl font-light leading-snug lg:text-4xl">
+      <section className="relative flex min-h-svh items-center overflow-hidden">
+        <img src={hero.url} alt="Atharv Gupta — Transform your brand into a thriving business" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="hero-overlay absolute inset-0" />
+        <div className="relative mx-auto w-full max-w-6xl px-6 py-28">
+          <div className="max-w-2xl animate-fade-up">
+            <span className="badge">Websites for creators & brands</span>
+            <h1 className="mt-6 text-4xl font-semibold leading-[1.08] tracking-tight md:text-6xl lg:text-7xl">
               Utilize your <span className="text-primary">fame</span> to grow your business through a website.
-            </h2>
-            <a href="#demo" className="btn-primary mt-8 inline-block">Get a free demo</a>
+            </h1>
+            <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
+              Turn your audience into customers. We build fast, professional websites that sell your brand products, scale with you, and keep your fans loyal.
+            </p>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <a href="#demo" className="btn-primary">Get a free demo</a>
+              <a href="#why" className="btn-ghost">See why it works</a>
+            </div>
+            <div className="mt-14 flex flex-wrap gap-10">
+              {[["4", "Growth benefits"], ["3", "Concerns answered"], ["24h", "Demo turnaround"]].map(([n, l]) => (
+                <div key={l}>
+                  <p className="text-2xl font-semibold text-primary md:text-3xl">{n}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{l}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="px-6 pb-12 md:hidden">
-          <h2 className="text-2xl font-light leading-snug">
-            Utilize your <span className="text-primary">fame</span> to grow your business through a website.
-          </h2>
-          <a href="#demo" className="btn-primary mt-6 inline-block">Get a free demo</a>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="why" className="mx-auto max-w-6xl scroll-mt-8 px-6 py-24">
         <p className="eyebrow">Why a website</p>
         <h2 className="mt-3 text-3xl font-medium md:text-5xl">The honest pros & cons</h2>
         <div className="mt-12 grid gap-6 md:grid-cols-2">
