@@ -58,10 +58,22 @@ function Index() {
   return (
     <main className="bg-background text-foreground">
       <section className="relative flex min-h-svh items-center overflow-hidden">
+        <header className="absolute inset-x-0 top-0 z-20">
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+            <a href="#" className="flex items-center gap-3 text-sm font-medium tracking-wide text-foreground">
+              <span className="flex size-9 items-center justify-center rounded-full border border-primary/50 text-base font-semibold text-primary">A</span>
+              <span>Atharv Gupta</span>
+            </a>
+            <nav aria-label="Main navigation" className="flex items-center gap-5 text-sm">
+              <a href="#why" className="text-muted-foreground transition-colors hover:text-primary">Why a website</a>
+              <a href="#demo" className="rounded-full border border-primary/50 px-4 py-2 text-primary transition-colors hover:bg-primary hover:text-primary-foreground">Get a demo</a>
+            </nav>
+          </div>
+        </header>
         <img
           src={hero}
           alt="Atharv Gupta — Transform your brand into a thriving business"
-          className="hero-image absolute inset-0 h-full w-full object-cover object-[75%_center] md:object-center"
+          className="hero-image absolute inset-0 h-full w-full object-cover object-[75%_60%] md:object-[50%_60%]"
         />
         <div className="hero-overlay absolute inset-0" />
         <div className="absolute inset-0 bg-background/60 md:bg-transparent" aria-hidden="true" />
@@ -160,6 +172,14 @@ function Index() {
           </form>
         )}
       </section>
+
+      <footer className="border-t border-white/10">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 py-7 text-center text-xs text-muted-foreground sm:flex-row sm:text-left">
+          <a href="#" className="font-medium tracking-wide text-foreground">Atharv Gupta</a>
+          <p>© {new Date().getFullYear()} Atharv Gupta. All rights reserved.</p>
+          <a href="#demo" className="transition-colors hover:text-primary">Get in touch</a>
+        </div>
+      </footer>
     </main>
   );
 }
