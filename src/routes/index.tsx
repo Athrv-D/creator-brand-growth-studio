@@ -85,7 +85,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="why" className="mx-auto max-w-6xl scroll-mt-8 px-6 py-24">
         <p className="eyebrow">Why a website</p>
         <h2 className="mt-3 text-3xl font-medium md:text-5xl">The honest pros & cons</h2>
         <div className="mt-12 grid gap-6 md:grid-cols-2">
