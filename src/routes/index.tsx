@@ -47,7 +47,7 @@ function Index() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     const parsed = schema.safeParse(form);
-    if (!parsed.success) return setError(parsed.error.issues[0].message);
+    if (!parsed.success) return setError(parsed.error.issues[0]?.message ?? "Invalid input");
     setError("");
     setStatus("sending");
     const { error } = await supabase.from("demo_requests").insert(parsed.data);
@@ -135,7 +135,7 @@ function Index() {
             <div>
               <span className="field-label">Website for</span>
               <div className="mt-2 grid grid-cols-2 gap-3">
-                {[["business", "Business"], ["personal_brand", "Personal brand"]].map(([v, l]) => (
+                {([["business", "Business"], ["personal_brand", "Personal brand"]] as const).map(([v, l]) => (
                   <button type="button" key={v} onClick={() => setForm({ ...form, website_for: v })} className={form.website_for === v ? "choice choice-on" : "choice"}>{l}</button>
                 ))}
               </div>
