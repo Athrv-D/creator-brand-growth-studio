@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { Check, X } from "lucide-react";
-import hero from "@/assets/hero-portrait.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
@@ -59,7 +58,7 @@ function Index() {
     <main className="bg-background text-foreground">
       <section className="relative flex min-h-svh items-center overflow-hidden">
         <img
-          src={hero.url}
+          src={hero}
           alt="Atharv Gupta — Transform your brand into a thriving business"
           className="absolute inset-0 h-full w-full object-cover object-[75%_center] md:object-center"
         />
