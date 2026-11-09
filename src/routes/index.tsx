@@ -73,7 +73,11 @@ function Index() {
         <img
           src={hero}
           alt="Atharv Gupta — Transform your brand into a thriving business"
+<<<<<<< Updated upstream
           className="hero-image absolute inset-x-0 bottom-0 top-auto h-[58%] w-full object-cover object-[75%_45%] sm:h-[66%] sm:object-[72%_48%] md:inset-0 md:h-full md:object-[68%_58%] lg:object-[70%_58%]"
+=======
+          className="hero-image absolute inset-0 h-[85%] w-full object-cover object-[75%_60%] md:object-[50%_60%]"
+>>>>>>> Stashed changes
         />
         <div className="hero-overlay absolute inset-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background/20 md:hidden" aria-hidden="true" />
