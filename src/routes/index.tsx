@@ -58,7 +58,7 @@ function Index() {
     <main className="bg-background text-foreground">
       <section className="relative flex min-h-svh items-center overflow-hidden">
         <img
-          src="/images/hero-portrait.png"
+          src={hero}
           alt="Atharv Gupta — Transform your brand into a thriving business"
           className="absolute inset-0 h-full w-full object-cover object-[75%_center] md:object-center"
         />
