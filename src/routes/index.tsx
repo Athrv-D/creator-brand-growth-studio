@@ -61,7 +61,7 @@ function Index() {
         <img
           src={hero}
           alt="Atharv Gupta — Transform your brand into a thriving business"
-          className="absolute inset-0 h-full w-full object-cover object-[75%_center] md:object-center"
+          className="hero-image absolute inset-0 h-full w-full object-cover object-[75%_center] md:object-center"
         />
         <div className="hero-overlay absolute inset-0" />
         <div className="absolute inset-0 bg-background/60 md:bg-transparent" aria-hidden="true" />
