@@ -57,15 +57,15 @@ function Index() {
 
   return (
     <main className="bg-background text-foreground">
-      <section className="relative flex min-h-svh items-center overflow-hidden">
+      <section className="relative flex min-h-[900px] items-start overflow-hidden sm:min-h-[850px] md:min-h-svh md:items-center">
         <header className="absolute inset-x-0 top-0 z-20">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
             <a href="#" className="flex items-center gap-3 text-sm font-medium tracking-wide text-foreground">
               <span className="flex size-9 items-center justify-center rounded-full border border-primary/50 text-base font-semibold text-primary">A</span>
               <span>Atharv Gupta</span>
             </a>
-            <nav aria-label="Main navigation" className="flex items-center gap-5 text-sm">
-              <a href="#why" className="text-muted-foreground transition-colors hover:text-primary">Why a website</a>
+            <nav aria-label="Main navigation" className="flex items-center gap-2 text-xs sm:gap-5 sm:text-sm">
+              <a href="#why" className="hidden text-muted-foreground transition-colors hover:text-primary sm:inline">Why a website</a>
               <a href="#demo" className="rounded-full border border-primary/50 px-4 py-2 text-primary transition-colors hover:bg-primary hover:text-primary-foreground">Get a demo</a>
             </nav>
           </div>
@@ -73,11 +73,12 @@ function Index() {
         <img
           src={hero}
           alt="Atharv Gupta — Transform your brand into a thriving business"
-          className="hero-image absolute inset-0 h-full w-full object-cover object-[75%_60%] md:object-[50%_60%]"
+          className="hero-image absolute inset-x-0 bottom-0 top-auto h-[58%] w-full object-cover object-[75%_45%] sm:h-[66%] sm:object-[72%_48%] md:inset-0 md:h-full md:object-[68%_58%] lg:object-[70%_58%]"
         />
         <div className="hero-overlay absolute inset-0" />
-        <div className="absolute inset-0 bg-background/60 md:bg-transparent" aria-hidden="true" />
-        <div className="relative mx-auto w-full max-w-6xl px-6 py-24 md:py-28">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background/20 md:hidden" aria-hidden="true" />
+        <div className="absolute inset-0 hidden bg-background/60 md:block" aria-hidden="true" />
+        <div className="relative mx-auto w-full max-w-6xl px-6 pb-16 pt-28 sm:pt-32 md:py-28">
           <div className="max-w-2xl animate-fade-up">
             <span className="badge">Websites for creators & brands</span>
             <h1 className="mt-6 text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
