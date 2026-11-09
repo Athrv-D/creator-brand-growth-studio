@@ -84,8 +84,8 @@ function Index() {
           <div className="relative mx-auto w-full max-w-sm md:max-w-none">
             <div className="absolute -inset-4 rounded-[2rem] bg-primary/10 blur-2xl" aria-hidden="true" />
             <img
-              src={hero.url}
-              alt="Atharv Gupta — Transform your brand into a thriving business"
+              src="/hero-person.png"
+              alt="Atharv Gupta"
               className="relative aspect-[4/5] w-full rounded-3xl border border-border object-cover shadow-2xl"
             />
           </div>
