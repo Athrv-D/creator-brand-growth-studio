@@ -36,7 +36,7 @@ const schema = z.object({
   name: z.string().trim().min(1, "Please enter your name").max(100),
   content_category: z.string().min(1, "Choose a category").max(50),
   email: z.string().trim().email("Enter a valid email").max(255),
-  website_for: z.enum(["business", "personal_brand"]),
+  website_for: z.enum(["business", "personal_brand","both"]),
 });
 
 function Index() {
@@ -44,16 +44,49 @@ function Index() {
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
   const [error, setError] = useState("");
 
-  async function submit(e: React.FormEvent) {
-    e.preventDefault();
-    const parsed = schema.safeParse(form);
-    if (!parsed.success) return setError(parsed.error.issues[0]?.message ?? "Invalid input");
-    setError("");
-    setStatus("sending");
-    const { error } = await supabase.from("demo_requests").insert(parsed.data);
-    if (error) { setStatus("idle"); return setError("Something went wrong. Please try again."); }
-    setStatus("done");
+
+async function submit(e: React.FormEvent) {
+  e.preventDefault();
+
+  const parsed = schema.safeParse(form);
+
+  if (!parsed.success) {
+    return setError(parsed.error.issues[0]?.message ?? "Invalid input");
   }
+
+  setError("");
+  setStatus("sending");
+
+  // First save the request in Supabase.
+  const { error: insertError } = await supabase
+    .from("demo_requests")
+    .insert(parsed.data);
+
+  if (insertError) {
+    console.error("Supabase submission error:", insertError);
+    setStatus("idle");
+    return setError("Something went wrong. Please try again.");
+  }
+
+  // Then send the notification email.
+  try {
+    const response = await fetch("/api/notify-demo", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(parsed.data),
+    });
+
+    if (!response.ok) {
+      console.error("Email notification failed:", await response.text());
+      setError("Your request was saved, but the notification email could not be sent.");
+    }
+  } catch (notificationError) {
+    console.error("Email notification error:", notificationError);
+    setError("Your request was saved, but the notification email could not be sent.");
+  }
+
+  setStatus("done");
+}
 
   return (
     <main className="bg-background text-foreground">
@@ -70,17 +103,13 @@ function Index() {
             </nav>
           </div>
         </header>
+        {/* still it's not responsive tell me what to change in this class so when i see with phone my pic will remain    className="hero-image absolute inset-0 h-[85%] w-full object-cover object-[75%_60%] md:object-[50%_60%]"/> */}
         <img
           src={hero}
           alt="Atharv Gupta — Transform your brand into a thriving business"
-<<<<<<< Updated upstream
-          className="hero-image absolute inset-x-0 bottom-0 top-auto h-[58%] w-full object-cover object-[75%_45%] sm:h-[66%] sm:object-[72%_48%] md:inset-0 md:h-full md:object-[68%_58%] lg:object-[70%_58%]"
-=======
-          className="hero-image absolute inset-0 h-[85%] w-full object-cover object-[75%_60%] md:object-[50%_60%]"
->>>>>>> Stashed changes
-        />
-        <div className="hero-overlay absolute inset-0" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background/20 md:hidden" aria-hidden="true" />
+           
+ className="hero-image absolute inset-0 h-[85%] w-full object-cover object-[75%_60%] md:object-[50%_60%]"/>         <div className="hero-overlay absolute inset-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 via-55% to-background/25 md:hidden" aria-hidden="true" />
         <div className="absolute inset-0 hidden bg-background/60 md:block" aria-hidden="true" />
         <div className="relative mx-auto w-full max-w-6xl px-6 pb-16 pt-28 sm:pt-32 md:py-28">
           <div className="max-w-2xl animate-fade-up">
@@ -143,10 +172,15 @@ function Index() {
         <p className="eyebrow">Free demo</p>
         <h2 className="mt-3 text-3xl font-medium md:text-4xl">Fill this to get our demo work in your email</h2>
         {status === "done" ? (
-          <div className="panel mt-10 text-center">
-            <p className="text-xl">Thank you, {form.name}!</p>
-            <p className="mt-2 text-muted-foreground">We've received your request.</p>
-          </div>
+       <div className="panel mt-10 text-center">
+  <p className="text-xl">Thank you, {form.name}!</p>
+  <p className="mt-2 text-muted-foreground">
+    We've received your request.
+  </p>
+  {error && (
+    <p className="mt-3 text-sm text-destructive">{error}</p>
+  )}
+</div>
         ) : (
           <form onSubmit={submit} className="panel mt-10 space-y-5">
             <label className="block">
@@ -167,7 +201,7 @@ function Index() {
             <div>
               <span className="field-label">Website for</span>
               <div className="mt-2 grid grid-cols-2 gap-3">
-                {([["business", "Business"], ["personal_brand", "Personal brand"]] as const).map(([v, l]) => (
+                {([["business", "Business"], ["personal_brand", "Personal brand"],["both","Both"]] as const).map(([v, l]) => (
                   <button type="button" key={v} onClick={() => setForm({ ...form, website_for: v })} className={form.website_for === v ? "choice choice-on" : "choice"}>{l}</button>
                 ))}
               </div>
