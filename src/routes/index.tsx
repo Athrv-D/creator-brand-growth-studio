@@ -1,16 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { z } from "zod";
-import { Check, X } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Atharv Gupta — Websites for Creators & Brands" },
-      { name: "description", content: "Utilize your fame to grow your business through a website. Get a free demo of our work." },
-      { property: "og:title", content: "Atharv Gupta — Websites for Creators & Brands" },
-      { property: "og:description", content: "Turn your fame into a thriving business with a professional website." },
+      { title: "Detailed Benefits of a Website for Your Business — Atharv Gupta" },
+      { name: "description", content: "Research-backed benefits of creating a website for your business or brand: credibility, accessibility, reach, brand awareness, leads, and engagement." },
+      { property: "og:title", content: "Detailed Benefits of a Website for Your Business — Atharv Gupta" },
+      { property: "og:description", content: "Research-backed benefits of creating a website for your business or brand." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -18,147 +14,134 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const pros = [
-  "Lets you sell your brand products directly",
-  "Helps grow and scale your business while keeping a loyal fanbase",
-  "Separates your daily content from your business content",
-  "Makes your brand feel professional and authentic",
+const sections = [
+  {
+    title: "Professionality & Credibility",
+    points: [
+      "75% of consumers judge a company's credibility based on its website design alone, according to Stanford Web Credibility Research.",
+      "56% of consumers explicitly state they will not trust a business that does not have a website.",
+      "80% of internet users are more likely to buy from a business that has a professional website.",
+      "94% of first impressions are design-related, with users forming an opinion about a business's trustworthiness in just 0.05 seconds.",
+    ],
+  },
+  {
+    title: "Accessibility (Availability & Purchasing Access)",
+    points: [
+      "81% to 91% of shoppers conduct online research before making a purchase or visiting a physical store — meaning without a website, a business is effectively inaccessible to roughly 8 out of 10 modern buyers.",
+      "61% of users are more likely to buy from a brand if its website is mobile-friendly, directly expanding accessibility to smartphone users.",
+      "23% increase in revenue occurs on average when small businesses add 24/7 online booking or scheduling tools to their websites.",
+    ],
+  },
+  {
+    title: "Reach & Overall Growth",
+    points: [
+      "Businesses with a website grow 15% to 50% more than comparable offline enterprises.",
+      "A joint Google and Deloitte study of over 4,500 small businesses found that digitally connected businesses with websites are 2.8 times (180%) more likely to experience revenue growth than those without.",
+      "68.7% of all search clicks go to the top three organic search results, showing how a search-optimized website drastically multiplies organic reach compared to relying solely on word-of-mouth.",
+    ],
+  },
+  {
+    title: "Brand Awareness",
+    points: [
+      "Search visibility and digital campaigns tied to a website can increase brand awareness by up to 80%.",
+      "Empirical marketing research confirms a statistically significant increase in top-of-mind awareness and brand recall when organizations actively use a website alongside digital promotion.",
+    ],
+  },
+  {
+    title: "Connections & Lead Generation",
+    points: [
+      "90% of marketers rely on their website as a primary tool for generating inbound leads and business connections.",
+      "Businesses that maintain an active blog on their website generate 3 times (200%) more leads than those without one.",
+      "Companies with 30 or more landing pages on their website generate 7 times (600%) more leads than businesses with fewer than 10 pages.",
+    ],
+  },
+  {
+    title: "Followers & Audience Engagement",
+    points: [
+      "Research on digital brand ecosystems shows that combining website content with social media channels increases overall audience engagement rates by up to 45%.",
+      "Important caveat from academic studies: a meta-analysis in the Journal of Marketing notes a \"ceiling effect\" — new or smaller brands see much higher percentage jumps in follower growth and engagement after launching digital assets because they start from a low baseline, whereas large established brands see smaller percentage gains.",
+    ],
+  },
 ];
-const cons = [
-  ["Maintenance cost", "Negligible compared to future growth and scalability"],
-  ["Takes a little time to manage", "But we will help and guide you"],
-  ["May feel like a distraction", "You'll be thankful in this connected digital world"],
-];
-const categories = ["Entertainment", "Lifestyle", "Fashion", "Fitness", "Food", "Travel", "Beauty", "Gaming", "Tech", "Education", "Music", "Finance", "Comedy", "Other"];
 
-const schema = z.object({
-  name: z.string().trim().min(1, "Please enter your name").max(100),
-  content_category: z.string().min(1, "Choose a category").max(50),
-  email: z.string().trim().email("Enter a valid email").max(255),
-  website_for: z.enum(["business", "personal_brand"]),
-});
+const summary: [string, string][] = [
+  ["Professionality", "75% judge credibility by website; 56% distrust businesses without one."],
+  ["Accessibility", "Reaches the 81%–91% of shoppers who research online before buying."],
+  ["Reach", "15%–50% higher business growth; 2.8x more likely to grow revenue."],
+  ["Brand Awareness", "Up to 80% lift in awareness via search visibility and digital presence."],
+  ["Connections / Leads", "3x more leads with a website blog; 7x more leads with 30+ pages."],
+  ["Followers / Engagement", "Up to 45% increase in engagement when integrating web and social content."],
+];
 
 function Index() {
-  const [form, setForm] = useState({ name: "", content_category: "", email: "", website_for: "business" });
-  const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
-  const [error, setError] = useState("");
-
-  async function submit(e: React.FormEvent) {
-    e.preventDefault();
-    const parsed = schema.safeParse(form);
-    if (!parsed.success) return setError(parsed.error.issues[0]?.message ?? "Invalid input");
-    setError("");
-    setStatus("sending");
-    const { error } = await supabase.from("demo_requests").insert(parsed.data);
-    if (error) { setStatus("idle"); return setError("Something went wrong. Please try again."); }
-    setStatus("done");
-  }
-
   return (
-    <main className="bg-background text-foreground">
-      <section className="relative flex min-h-svh items-center overflow-hidden">
-        <img
-          src={hero}
-          alt="Atharv Gupta — Transform your brand into a thriving business"
-          className="absolute inset-0 h-full w-full object-cover object-[75%_center] md:object-center"
-        />
-        <div className="hero-overlay absolute inset-0" />
-        <div className="absolute inset-0 bg-background/60 md:bg-transparent" aria-hidden="true" />
-        <div className="relative mx-auto w-full max-w-6xl px-6 py-24 md:py-28">
-          <div className="max-w-2xl animate-fade-up">
-            <span className="badge">Websites for creators & brands</span>
-            <h1 className="mt-6 text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
-              Utilize your <span className="text-primary">fame</span> to grow your business through a website.
-            </h1>
-            <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
-              Turn your audience into customers. We build fast, professional websites that sell your brand products, scale with you, and keep your fans loyal.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a href="#demo" className="btn-primary">Get a free demo</a>
-              <a href="#why" className="btn-ghost">See why it works</a>
-            </div>
-            <div className="mt-14 flex flex-wrap gap-8 md:gap-10">
-              {[["4", "Growth benefits"], ["3", "Concerns answered"], ["24h", "Demo turnaround"]].map(([n, l]) => (
-                <div key={l}>
-                  <p className="text-2xl font-semibold text-primary md:text-3xl">{n}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{l}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+    <main className="flex min-h-svh flex-col bg-background text-foreground">
+      <header className="border-b border-border">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+          <span className="text-lg font-semibold tracking-tight">
+            Atharv <span className="text-primary">Gupta</span>
+          </span>
+          <span className="badge">Websites for creators & brands</span>
         </div>
-      </section>
+      </header>
 
-      <section id="why" className="mx-auto max-w-6xl scroll-mt-8 px-6 py-24">
-        <p className="eyebrow">Why a website</p>
-        <h2 className="mt-3 text-3xl font-medium md:text-5xl">The honest pros & cons</h2>
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          <div className="panel">
-            <h3 className="text-xl font-medium text-primary">Pros</h3>
-            <ul className="mt-6 space-y-5">
-              {pros.map((p, i) => (
-                <li key={p} className="flex gap-4">
-                  <span className="num">{i + 1}</span>
-                  <span className="flex items-start gap-2"><Check className="mt-1 size-4 shrink-0 text-primary" />{p}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="panel">
-            <h3 className="text-xl font-medium text-muted-foreground">Cons</h3>
-            <ul className="mt-6 space-y-5">
-              {cons.map(([c, r], i) => (
-                <li key={c} className="flex gap-4">
-                  <span className="num">{i + 1}</span>
-                  <div>
-                    <p className="flex items-center gap-2"><X className="size-4 text-muted-foreground" />{c}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">→ {r}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
+      <article className="mx-auto w-full max-w-4xl flex-1 px-6 py-16 md:py-24">
+        <p className="eyebrow">Research-backed</p>
+        <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+          Detailed Benefits of Creating a Website for Your <span className="text-primary">Business / Brand</span>
+        </h1>
+        <p className="mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
+          Existing marketing research, consumer behavior studies, and small business surveys provide clear benchmarks for how launching a website changes these metrics. Because a website moves a business from offline or social-only visibility to a 24/7 searchable asset, studies show measurable percentage shifts across each category:
+        </p>
 
-      <section id="demo" className="mx-auto max-w-xl px-6 pb-28">
-        <p className="eyebrow">Free demo</p>
-        <h2 className="mt-3 text-3xl font-medium md:text-4xl">Fill this to get our demo work in your email</h2>
-        {status === "done" ? (
-          <div className="panel mt-10 text-center">
-            <p className="text-xl">Thank you, {form.name}!</p>
-            <p className="mt-2 text-muted-foreground">We've received your request.</p>
-          </div>
-        ) : (
-          <form onSubmit={submit} className="panel mt-10 space-y-5">
-            <label className="block">
-              <span className="field-label">Name</span>
-              <input className="field" maxLength={100} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-            </label>
-            <label className="block">
-              <span className="field-label">Content category</span>
-              <select className="field" value={form.content_category} onChange={(e) => setForm({ ...form, content_category: e.target.value })}>
-                <option value="">Select a category</option>
-                {categories.map((c) => <option key={c} value={c}>{c}</option>)}
-              </select>
-            </label>
-            <label className="block">
-              <span className="field-label">Email</span>
-              <input type="email" className="field" maxLength={255} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-            </label>
-            <div>
-              <span className="field-label">Website for</span>
-              <div className="mt-2 grid grid-cols-2 gap-3">
-                {([["business", "Business"], ["personal_brand", "Personal brand"]] as const).map(([v, l]) => (
-                  <button type="button" key={v} onClick={() => setForm({ ...form, website_for: v })} className={form.website_for === v ? "choice choice-on" : "choice"}>{l}</button>
-                ))}
+        <div className="mt-14 space-y-6">
+          {sections.map((s, i) => (
+            <section key={s.title} className="panel">
+              <div className="flex items-center gap-4">
+                <span className="num">{i + 1}</span>
+                <h2 className="text-xl font-medium md:text-2xl">{s.title}</h2>
               </div>
-            </div>
-            {error && <p className="text-sm text-destructive">{error}</p>}
-            <button disabled={status === "sending"} className="btn-primary w-full">{status === "sending" ? "Sending..." : "Send me the demo"}</button>
-          </form>
-        )}
-      </section>
+              <ul className="mt-6 space-y-4">
+                {s.points.map((p) => (
+                  <li key={p} className="flex gap-3 text-muted-foreground">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+
+        <section className="mt-14">
+          <h2 className="text-2xl font-medium md:text-3xl">Summary Table of Research Benchmarks</h2>
+          <div className="panel mt-6 overflow-x-auto p-0">
+            <table className="w-full min-w-[32rem] text-left text-sm">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="px-6 py-4 font-medium text-primary">Aspect</th>
+                  <th className="px-6 py-4 font-medium text-primary">Key Research Finding / Benchmark</th>
+                </tr>
+              </thead>
+              <tbody>
+                {summary.map(([aspect, finding]) => (
+                  <tr key={aspect} className="border-b border-border last:border-0">
+                    <td className="px-6 py-4 font-medium">{aspect}</td>
+                    <td className="px-6 py-4 text-muted-foreground">{finding}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </article>
+
+      <footer className="border-t border-border">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-sm text-muted-foreground">
+          <span>Atharv Gupta — Websites for creators & brands</span>
+          <span>Turn your fame into a thriving business.</span>
+        </div>
+      </footer>
     </main>
   );
 }
