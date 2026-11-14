@@ -137,7 +137,7 @@ function Index() {
                 <h2 className="text-xl font-medium md:text-2xl">{s.title}</h2>
               </div>
               <ul className="mt-6 space-y-4">
-                {s.points.map((p) => (
+                {s.points.map((p, pointIndex) => (
                   <li key={p} className="flex gap-3 text-muted-foreground">
                     <span
                       className="mt-2 size-1.5 shrink-0 rounded-full bg-primary"
@@ -145,11 +145,12 @@ function Index() {
                     />
                     <span className="min-w-0">
                       {p}{" "}
-                      <span className="text-sm">
+                      {pointIndex < s.articles.length && <span className="text-sm">
                         Further reading:{" "}
                         {s.articles.map((url, articleIndex) => (
+                          articleIndex % s.points.length === pointIndex &&
                           <span key={url}>
-                            {articleIndex > 0 ? ", " : ""}
+                            {articleIndex >= s.points.length ? ", " : ""}
                             <a
                               href={url}
                               target="_blank"
@@ -161,7 +162,7 @@ function Index() {
                             </a>
                           </span>
                         ))}
-                      </span>
+                      </span>}
                     </span>
                   </li>
                 ))}
