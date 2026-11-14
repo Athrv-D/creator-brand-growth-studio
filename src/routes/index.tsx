@@ -4,9 +4,19 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Detailed Benefits of a Website for Your Business — Atharv Gupta" },
-      { name: "description", content: "Research-backed benefits of creating a website for your business or brand: credibility, accessibility, reach, brand awareness, leads, and engagement." },
-      { property: "og:title", content: "Detailed Benefits of a Website for Your Business — Atharv Gupta" },
-      { property: "og:description", content: "Research-backed benefits of creating a website for your business or brand." },
+      {
+        name: "description",
+        content:
+          "Research-backed benefits of creating a website for your business or brand: credibility, accessibility, reach, brand awareness, leads, and engagement.",
+      },
+      {
+        property: "og:title",
+        content: "Detailed Benefits of a Website for Your Business — Atharv Gupta",
+      },
+      {
+        property: "og:description",
+        content: "Research-backed benefits of creating a website for your business or brand.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -44,10 +54,7 @@ const sections = [
   },
   {
     title: "Reach & Overall Growth",
-    articles: [
-      "https://share.google/IvhZSryCoLACFwlIu",
-      "https://share.google/ajOCZPZrUPNYOad06",
-    ],
+    articles: ["https://share.google/IvhZSryCoLACFwlIu", "https://share.google/ajOCZPZrUPNYOad06"],
     points: [
       "Businesses with a website grow 15% to 50% more than comparable offline enterprises.",
       "A joint Google and Deloitte study of over 4,500 small businesses found that digitally connected businesses with websites are 2.8 times (180%) more likely to experience revenue growth than those without.",
@@ -77,13 +84,10 @@ const sections = [
   },
   {
     title: "Followers & Audience Engagement",
-    articles: [
-      "https://share.google/oVIvSgTb8JRehdo4o",
-      "https://share.google/D5oCGhPJXzQWJy0jL",
-    ],
+    articles: ["https://share.google/oVIvSgTb8JRehdo4o", "https://share.google/D5oCGhPJXzQWJy0jL"],
     points: [
       "Research on digital brand ecosystems shows that combining website content with social media channels increases overall audience engagement rates by up to 45%.",
-      "Important caveat from academic studies: a meta-analysis in the Journal of Marketing notes a \"ceiling effect\" — new or smaller brands see much higher percentage jumps in follower growth and engagement after launching digital assets because they start from a low baseline, whereas large established brands see smaller percentage gains.",
+      'Important caveat from academic studies: a meta-analysis in the Journal of Marketing notes a "ceiling effect" — new or smaller brands see much higher percentage jumps in follower growth and engagement after launching digital assets because they start from a low baseline, whereas large established brands see smaller percentage gains.',
     ],
   },
 ];
@@ -94,7 +98,10 @@ const summary: [string, string][] = [
   ["Reach", "15%–50% higher business growth; 2.8x more likely to grow revenue."],
   ["Brand Awareness", "Up to 80% lift in awareness via search visibility and digital presence."],
   ["Connections / Leads", "3x more leads with a website blog; 7x more leads with 30+ pages."],
-  ["Followers / Engagement", "Up to 45% increase in engagement when integrating web and social content."],
+  [
+    "Followers / Engagement",
+    "Up to 45% increase in engagement when integrating web and social content.",
+  ],
 ];
 
 function Index() {
@@ -112,10 +119,14 @@ function Index() {
       <article className="mx-auto w-full max-w-4xl flex-1 px-6 py-16 md:py-24">
         <p className="eyebrow">Research-backed</p>
         <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
-          Detailed Benefits of Creating a Website for Your <span className="text-primary">Business / Brand</span>
+          Detailed Benefits of Creating a Website for Your{" "}
+          <span className="text-primary">Business / Brand</span>
         </h1>
         <p className="mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
-          Existing marketing research, consumer behavior studies, and small business surveys provide clear benchmarks for how launching a website changes these metrics. Because a website moves a business from offline or social-only visibility to a 24/7 searchable asset, studies show measurable percentage shifts across each category:
+          Existing marketing research, consumer behavior studies, and small business surveys provide
+          clear benchmarks for how launching a website changes these metrics. Because a website
+          moves a business from offline or social-only visibility to a 24/7 searchable asset,
+          studies show measurable percentage shifts across each category:
         </p>
 
         <div className="mt-14 space-y-6">
@@ -128,7 +139,10 @@ function Index() {
               <ul className="mt-6 space-y-4">
                 {s.points.map((p) => (
                   <li key={p} className="flex gap-3 text-muted-foreground">
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
+                    <span
+                      className="mt-2 size-1.5 shrink-0 rounded-full bg-primary"
+                      aria-hidden="true"
+                    />
                     <span className="min-w-0">
                       {p}{" "}
                       <span className="text-sm">
@@ -163,7 +177,9 @@ function Index() {
               <thead>
                 <tr className="border-b border-border">
                   <th className="px-6 py-4 font-medium text-primary">Aspect</th>
-                  <th className="px-6 py-4 font-medium text-primary">Key Research Finding / Benchmark</th>
+                  <th className="px-6 py-4 font-medium text-primary">
+                    Key Research Finding / Benchmark
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -180,7 +196,8 @@ function Index() {
         <section className="mt-14 border-t border-border pt-10">
           <h2 className="text-2xl font-medium md:text-3xl">Further Reading</h2>
           <p className="mt-4 text-muted-foreground">
-            You can also read the following articles for further understanding of the research behind these percentages.
+            You can also read the following articles for further understanding of the research
+            behind these percentages.
           </p>
           <div className="mt-8 space-y-6">
             {sections.map((section) => (
