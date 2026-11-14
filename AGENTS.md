@@ -11,6 +11,7 @@
 - Follow the existing TanStack file-based routing conventions in `src/routes/`.
 - Keep reusable interface elements in `src/components/`.
 - Keep shared helpers in `src/lib/`.
+- Configure Nitro's output root as `dist` so the build matches Lovable's deployment directory requirement.
 
 ## Environment and security
 - Keep local environment files and credentials out of version control.
