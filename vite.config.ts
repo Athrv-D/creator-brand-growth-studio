@@ -15,6 +15,10 @@ export default defineConfig({
     }),
     viteReact(),
     // The previous project configuration used Cloudflare as its Nitro target.
-    nitro({ preset: "cloudflare_module" }),
+    nitro({
+      preset: "cloudflare_module",
+      // Lovable deploys dist/ rather than Nitro's default .output/ directory.
+      output: { dir: "dist" },
+    }),
   ],
 });
