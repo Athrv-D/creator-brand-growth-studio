@@ -137,7 +137,7 @@ function Index() {
                 <h2 className="text-xl font-medium md:text-2xl">{s.title}</h2>
               </div>
               <ul className="mt-6 space-y-4">
-                {s.points.map((p) => (
+                {s.points.map((p, pointIndex) => (
                   <li key={p} className="flex gap-3 text-muted-foreground">
                     <span
                       className="mt-2 size-1.5 shrink-0 rounded-full bg-primary"
@@ -145,23 +145,28 @@ function Index() {
                     />
                     <span className="min-w-0">
                       {p}{" "}
-                      <span className="text-sm">
-                        Further reading:{" "}
-                        {s.articles.map((url, articleIndex) => (
-                          <span key={url}>
-                            {articleIndex > 0 ? ", " : ""}
-                            <a
-                              href={url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label={`${s.title}: article ${articleIndex + 1} (opens in a new tab)`}
-                              className="text-primary underline underline-offset-4 hover:text-primary/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
-                            >
-                              Article {articleIndex + 1}
-                            </a>
-                          </span>
-                        ))}
-                      </span>
+                      {pointIndex < s.articles.length && (
+                        <span className="text-sm">
+                          Further reading:{" "}
+                          {s.articles.map(
+                            (url, articleIndex) =>
+                              articleIndex % s.points.length === pointIndex && (
+                                <span key={url}>
+                                  {articleIndex >= s.points.length ? ", " : ""}
+                                  <a
+                                    href={url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`${s.title}: article ${articleIndex + 1} (opens in a new tab)`}
+                                    className="text-primary underline underline-offset-4 hover:text-primary/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+                                  >
+                                    Article {articleIndex + 1}
+                                  </a>
+                                </span>
+                              ),
+                          )}
+                        </span>
+                      )}
                     </span>
                   </li>
                 ))}
