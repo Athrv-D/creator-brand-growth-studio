@@ -17,6 +17,11 @@ export const Route = createFileRoute("/")({
 const sections = [
   {
     title: "Professionality & Credibility",
+    articles: [
+      "https://share.google/06wlmzsAE3FWJhFDf",
+      "https://share.google/5m5mSUHaDMXrklb8E",
+      "https://share.google/rzsyqC6gdHKzF7qLJ",
+    ],
     points: [
       "75% of consumers judge a company's credibility based on its website design alone, according to Stanford Web Credibility Research.",
       "56% of consumers explicitly state they will not trust a business that does not have a website.",
@@ -26,6 +31,11 @@ const sections = [
   },
   {
     title: "Accessibility (Availability & Purchasing Access)",
+    articles: [
+      "https://share.google/uZA5TMAbQTwDZxkOl",
+      "https://share.google/kENFrzWF2JBpttmfe",
+      "https://share.google/KMYPGUaSicXHUNqnS",
+    ],
     points: [
       "81% to 91% of shoppers conduct online research before making a purchase or visiting a physical store — meaning without a website, a business is effectively inaccessible to roughly 8 out of 10 modern buyers.",
       "61% of users are more likely to buy from a brand if its website is mobile-friendly, directly expanding accessibility to smartphone users.",
@@ -34,6 +44,10 @@ const sections = [
   },
   {
     title: "Reach & Overall Growth",
+    articles: [
+      "https://share.google/IvhZSryCoLACFwlIu",
+      "https://share.google/ajOCZPZrUPNYOad06",
+    ],
     points: [
       "Businesses with a website grow 15% to 50% more than comparable offline enterprises.",
       "A joint Google and Deloitte study of over 4,500 small businesses found that digitally connected businesses with websites are 2.8 times (180%) more likely to experience revenue growth than those without.",
@@ -42,6 +56,11 @@ const sections = [
   },
   {
     title: "Brand Awareness",
+    articles: [
+      "https://share.google/A7waknz5NjO4aApsf",
+      "https://share.google/eZV0CoRwMrnXExdHq",
+      "https://share.google/sL5K0MZazi01IGanZ",
+    ],
     points: [
       "Search visibility and digital campaigns tied to a website can increase brand awareness by up to 80%.",
       "Empirical marketing research confirms a statistically significant increase in top-of-mind awareness and brand recall when organizations actively use a website alongside digital promotion.",
@@ -49,6 +68,7 @@ const sections = [
   },
   {
     title: "Connections & Lead Generation",
+    articles: ["https://share.google/ZeKHoIDPT2NNLw04i"],
     points: [
       "90% of marketers rely on their website as a primary tool for generating inbound leads and business connections.",
       "Businesses that maintain an active blog on their website generate 3 times (200%) more leads than those without one.",
@@ -57,6 +77,10 @@ const sections = [
   },
   {
     title: "Followers & Audience Engagement",
+    articles: [
+      "https://share.google/oVIvSgTb8JRehdo4o",
+      "https://share.google/D5oCGhPJXzQWJy0jL",
+    ],
     points: [
       "Research on digital brand ecosystems shows that combining website content with social media channels increases overall audience engagement rates by up to 45%.",
       "Important caveat from academic studies: a meta-analysis in the Journal of Marketing notes a \"ceiling effect\" — new or smaller brands see much higher percentage jumps in follower growth and engagement after launching digital assets because they start from a low baseline, whereas large established brands see smaller percentage gains.",
@@ -105,7 +129,26 @@ function Index() {
                 {s.points.map((p) => (
                   <li key={p} className="flex gap-3 text-muted-foreground">
                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" aria-hidden="true" />
-                    <span>{p}</span>
+                    <span className="min-w-0">
+                      {p}{" "}
+                      <span className="text-sm">
+                        Further reading:{" "}
+                        {s.articles.map((url, articleIndex) => (
+                          <span key={url}>
+                            {articleIndex > 0 ? ", " : ""}
+                            <a
+                              href={url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`${s.title}: article ${articleIndex + 1} (opens in a new tab)`}
+                              className="text-primary underline underline-offset-4 hover:text-primary/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+                            >
+                              Article {articleIndex + 1}
+                            </a>
+                          </span>
+                        ))}
+                      </span>
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -132,6 +175,34 @@ function Index() {
                 ))}
               </tbody>
             </table>
+          </div>
+        </section>
+        <section className="mt-14 border-t border-border pt-10">
+          <h2 className="text-2xl font-medium md:text-3xl">Further Reading</h2>
+          <p className="mt-4 text-muted-foreground">
+            You can also read the following articles for further understanding of the research behind these percentages.
+          </p>
+          <div className="mt-8 space-y-6">
+            {sections.map((section) => (
+              <div key={section.title}>
+                <h3 className="font-medium">{section.title}</h3>
+                <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+                  {section.articles.map((url, articleIndex) => (
+                    <li key={url}>
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${section.title}: article ${articleIndex + 1} (opens in a new tab)`}
+                        className="text-primary underline underline-offset-4 hover:text-primary/80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+                      >
+                        Article {articleIndex + 1}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </section>
       </article>
